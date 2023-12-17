@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.4",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "compile": "tsc --declaration",
+    "prepublish": "npm run compile",
+    "test": "mocha"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "name": "eme",
+  "version": "0.0.1",
+  "description": "EME (Encrypt-Mix-Encrypt) wide-block encryption in TypeScript/JavaScript.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fyears/eme.git"
+  },
+  "keywords": [
+    "encryption"
+  ],
+  "license": "MIT"
+}
