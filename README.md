@@ -10,6 +10,10 @@ Almost line-to-line "translation", with all the ported test cases.
 
 ## Usage
 
+```bash
+npm install @fyears/eme
+```
+
 ```typescript
 import { EMECipher, AESCipherBlock } from "eme"
 import { deepStrictEqual } from "assert"
