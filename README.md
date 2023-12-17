@@ -24,6 +24,8 @@ import { deepStrictEqual } from "assert"
         8,9,10,11,12,13,14,15
     ]) // 16-byte Uint8Array the user provided for the AES part
 
+    const crypto = require('crypto').webcrypto
+
     const tweak = new Uint8Array(16)
     crypto.getRandomValues(tweak)  // iv
 
