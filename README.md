@@ -15,8 +15,9 @@ npm install @fyears/eme
 ```
 
 ```typescript
-import { EMECipher, AESCipherBlock } from "eme"
+import { EMECipher, AESCipherBlock } from "@fyears/eme"
 import { deepStrictEqual } from "assert"
+import { webcrypto } from "crypto"
 
 (async function(){
     const key = new Uint8Array([
@@ -24,13 +25,11 @@ import { deepStrictEqual } from "assert"
         8,9,10,11,12,13,14,15
     ]) // 16-byte Uint8Array the user provided for the AES part
 
-    const crypto = require('crypto').webcrypto
-
     const tweak = new Uint8Array(16)
-    crypto.getRandomValues(tweak)  // iv
+    webcrypto.getRandomValues(tweak)  // iv
 
     const input = new Uint8Array(64) // some Uint8Array the user provided
-    crypto.getRandomValues(input)
+    webcrypto.getRandomValues(input)
 
     const bc = new AESCipherBlock(key)
     const eme = new EMECipher(bc)
