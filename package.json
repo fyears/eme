@@ -23,5 +23,8 @@
   "keywords": [
     "encryption"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@noble/ciphers": "^0.5.1"
+  }
 }

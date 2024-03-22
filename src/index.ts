@@ -1,3 +1,4 @@
+import { ecb } from '@noble/ciphers/aes';
 
 function multByTwo(output: Uint8Array, input: Uint8Array) {
     if (input.length !== 16) {
@@ -178,7 +179,6 @@ export class AESCipherBlock implements CipherBlock {
     keyRaw: Uint8Array
     algo: string
     iv: Uint8Array
-    cryptoWait: Promise<any>
 
     constructor(keyRaw: Uint8Array) {
         this.keyRaw = keyRaw;
@@ -193,22 +193,16 @@ export class AESCipherBlock implements CipherBlock {
         } else {
             throw Error(`invalid key length = ${keyRaw.length}`)
         }
-
-        this.cryptoWait = import("crypto")
     }
 
     async encrypt(dst: Uint8Array, src: Uint8Array) {
-        const cipher = (await this.cryptoWait).createCipheriv(this.algo!, this.keyRaw, this.iv)
-        cipher.setAutoPadding(false)
-
-        dst.set([...cipher.update(src), ...cipher.final()])
+        const stream = ecb(this.keyRaw, {disablePadding:true});
+        dst.set([...stream.encrypt(src)]);
     }
 
     async decrypt(dst: Uint8Array, src: Uint8Array) {
-        const decipher = (await this.cryptoWait).createDecipheriv(this.algo!, this.keyRaw, this.iv)
-        decipher.setAutoPadding(false)
-
-        dst.set([...decipher.update(src), ...decipher.final()])
+        const stream = ecb(this.keyRaw, {disablePadding: true});
+        dst.set([...stream.decrypt(src)]);
     }
 
     blockSize() {
