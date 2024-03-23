@@ -14,7 +14,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "name": "@fyears/eme",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "EME (Encrypt-Mix-Encrypt) wide-block encryption in TypeScript/JavaScript.",
   "repository": {
     "type": "git",
